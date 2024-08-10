@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0479961E2C673A3000F64E6A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		049537562C6731AD008C9D14 /* HanniMemeCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HanniMemeCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049537592C6731AD008C9D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0495375B2C6731AD008C9D14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		0495374D2C6731AD008C9D14 = {
 			isa = PBXGroup;
 			children = (
+				0479961E2C673A3000F64E6A /* README.md */,
 				049537582C6731AD008C9D14 /* HanniMemeCollection */,
 				049537572C6731AD008C9D14 /* Products */,
 			);
