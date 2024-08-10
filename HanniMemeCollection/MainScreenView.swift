@@ -23,9 +23,9 @@ class MainScreenView: UIView {
     }
     
     private struct Constants {
-        static let sideConstraints: CGFloat = 55
-        static let topConstraints: CGFloat = 526
-        static let bottomConstrains: CGFloat = 162
+        static let buttonBottomConstrains: CGFloat = 162
+        static let buttonWidth: CGFloat = 221
+        static let buttonHeight: CGFloat = 63
     }
     
 }
@@ -45,14 +45,14 @@ extension MainScreenView {
     }
     
     private func configureMoveButton() {
-        // TODO: Add background color and style(capsule)
         self.addSubview(moveButton)
         
         moveButton.translatesAutoresizingMaskIntoConstraints = false
         var buttonConfiguration = UIButton.Configuration.plain()
-        buttonConfiguration.background.backgroundColor = .orange
+        buttonConfiguration.background.backgroundColor = UIColor(red: 201/255, green: 100/255, blue: 226/255, alpha: 1)
+        buttonConfiguration.baseForegroundColor = .white
         buttonConfiguration.title = "보러가기"
-        
+        buttonConfiguration.cornerStyle = .capsule
         moveButton.configuration = buttonConfiguration
     }
     
@@ -63,10 +63,10 @@ extension MainScreenView {
             backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            moveButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.sideConstraints),
-            moveButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.sideConstraints),
-            moveButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.topConstraints),
-            moveButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.bottomConstrains)
+            moveButton.widthAnchor.constraint(equalToConstant: Constants.buttonWidth),
+            moveButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+            moveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            moveButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.buttonBottomConstrains)
         ])
     }
 }
