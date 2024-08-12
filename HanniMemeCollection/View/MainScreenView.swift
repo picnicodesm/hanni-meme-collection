@@ -31,6 +31,12 @@ class MainScreenView: UIView {
 }
 
 extension MainScreenView {
+    func addButtonAction(_ action: UIAction) {
+        moveButton.addAction(action, for: .touchUpInside)
+    }
+}
+
+extension MainScreenView {
     private func configureView() {
         configureBackground()
         configureMoveButton()

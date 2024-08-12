@@ -10,6 +10,10 @@ import UIKit
 class MainScreenViewController: UIViewController {
 
     let mainScreenView = MainScreenView()
+    lazy var navigateAction = UIAction { _ in
+        let destination = MemeCollectionViewController()
+        self.navigationController?.pushViewController(destination, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,10 @@ class MainScreenViewController: UIViewController {
             mainScreenView.topAnchor.constraint(equalTo: view.topAnchor),
             mainScreenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    private func addButtonAction() {
+        mainScreenView.addButtonAction(navigateAction)
     }
 }
 
