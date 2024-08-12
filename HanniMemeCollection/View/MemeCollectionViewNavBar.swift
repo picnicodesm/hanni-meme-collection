@@ -21,21 +21,14 @@ class MemeCollectionViewNavBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Hanni Memes"
+        titleLabel.text = "팟캐스트"
+        titleLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         hierarchy()
         configureButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    struct Constants {
-        static let sideConstraints: CGFloat = 24
-        static let buttonWidth: CGFloat = 30
-        static let buttonHeight: CGFloat = 30
-        static let buttonCornerRadius: CGFloat = 15
-        static let buttonStrokWidth: CGFloat = 1
     }
     
     func addAction(action: UIAction, to buttonType: ButtonType){
@@ -46,7 +39,13 @@ class MemeCollectionViewNavBar: UIView {
             favoriteButton.addAction(action, for: .touchUpInside)
         }
     }
-   
+    
+    struct Constants {
+        static let buttonWidth: CGFloat = 30
+        static let buttonHeight: CGFloat = 30
+        static let buttonCornerRadius: CGFloat = 15
+        static let buttonStrokWidth: CGFloat = 1
+    }
 }
 
 extension MemeCollectionViewNavBar {
@@ -66,8 +65,8 @@ extension MemeCollectionViewNavBar {
     
         NSLayoutConstraint.activate([
             hStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            hStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.sideConstraints),
-            hStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.sideConstraints),
+            hStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: GlobalConstants.sideConstraints),
+            hStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -GlobalConstants.sideConstraints),
             hStack.heightAnchor.constraint(equalToConstant: GlobalConstants.navBarHeight),
             backButton.widthAnchor.constraint(equalToConstant: Constants.buttonWidth),
             backButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),

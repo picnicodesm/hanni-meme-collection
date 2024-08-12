@@ -8,6 +8,7 @@
 import Foundation
 
 struct GlobalConstants {
-    static let navBarHeight: CGFloat = 60
+    static let navBarHeight: CGFloat = 80
     static let backgroundImageHeight: CGFloat = 412
+    static let sideConstraints: CGFloat = 24
 }

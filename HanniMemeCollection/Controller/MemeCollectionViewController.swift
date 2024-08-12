@@ -78,8 +78,8 @@ extension MemeCollectionViewController {
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: GlobalConstants.sideConstraints),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -GlobalConstants.sideConstraints),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -104,8 +104,10 @@ extension MemeCollectionViewController {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(180))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = .fixed(16)
         
         let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 25
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         

@@ -28,13 +28,17 @@ class MemeCell: UICollectionViewCell {
 }
 
 extension MemeCell {
-    private func configureViews() {
+    private func configureViews() {        
         let thumbnailImageView = UIImageView()
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.image = UIImage(systemName: "apple.logo")
+        thumbnailImageView.backgroundColor = .purple
+        thumbnailImageView.layer.cornerRadius = 15
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        titleLabel.textAlignment = .left
         
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(titleLabel)
@@ -46,13 +50,14 @@ extension MemeCell {
     
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            thumbnailImageView.widthAnchor.constraint(equalToConstant: 150),
-            thumbnailImageView.heightAnchor.constraint(equalToConstant: 150),
+            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             
-            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 10),
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 }

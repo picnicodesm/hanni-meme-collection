@@ -22,41 +22,42 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vzW-3t-MbU">
-                                    <size key="itemSize" width="213" height="200"/>
+                                    <size key="itemSize" width="213" height="256"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bYL-YZ-BwB">
-                                        <rect key="frame" x="90" y="0.0" width="213" height="200"/>
+                                        <rect key="frame" x="90" y="0.0" width="213" height="256"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ggm-x3-gSe">
-                                            <rect key="frame" x="0.0" y="0.0" width="213" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="213" height="256"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WDV-fa-vjr">
-                                                    <rect key="frame" x="31.666666666666671" y="8" width="150" height="150"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="213" height="212"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="150" id="L3M-sz-exK"/>
-                                                        <constraint firstAttribute="width" constant="150" id="cbb-zS-lzy"/>
+                                                        <constraint firstAttribute="width" secondItem="WDV-fa-vjr" secondAttribute="height" constant="1" id="yZJ-9f-9JY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fㅏ니" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glx-uf-tKg">
-                                                    <rect key="frame" x="87" y="166" width="39" height="21"/>
+                                                    <rect key="frame" x="87" y="220" width="39" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="WDV-fa-vjr" firstAttribute="leading" secondItem="ggm-x3-gSe" secondAttribute="leading" id="3fi-eb-9Jh"/>
                                                 <constraint firstItem="glx-uf-tKg" firstAttribute="centerX" secondItem="ggm-x3-gSe" secondAttribute="centerX" id="9D8-MS-RUo"/>
                                                 <constraint firstItem="WDV-fa-vjr" firstAttribute="centerX" secondItem="ggm-x3-gSe" secondAttribute="centerX" id="EOQ-83-8pI"/>
                                                 <constraint firstItem="glx-uf-tKg" firstAttribute="top" secondItem="WDV-fa-vjr" secondAttribute="bottom" constant="8" symbolic="YES" id="Etx-lP-5Uu"/>
-                                                <constraint firstItem="WDV-fa-vjr" firstAttribute="top" secondItem="ggm-x3-gSe" secondAttribute="top" constant="8" id="n5f-91-vWO"/>
+                                                <constraint firstAttribute="trailing" secondItem="WDV-fa-vjr" secondAttribute="trailing" id="S74-3D-PAK"/>
+                                                <constraint firstItem="WDV-fa-vjr" firstAttribute="top" secondItem="ggm-x3-gSe" secondAttribute="top" id="n5f-91-vWO"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="213" height="200"/>
+                                        <size key="customSize" width="213" height="256"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
