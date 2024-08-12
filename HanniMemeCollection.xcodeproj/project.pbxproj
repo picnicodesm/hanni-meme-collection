@@ -13,6 +13,8 @@
 		047996282C67513600F64E6A /* MemeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047996272C67513600F64E6A /* MemeCollectionViewController.swift */; };
 		0479962A2C690CDD00F64E6A /* MemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047996292C690CDD00F64E6A /* MemeCell.swift */; };
 		0479962C2C69CC0100F64E6A /* MemeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479962B2C69CC0100F64E6A /* MemeVideo.swift */; };
+		047996342C69E10400F64E6A /* MemeCollectionViewNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047996332C69E10400F64E6A /* MemeCollectionViewNavBar.swift */; };
+		047996362C69EA1A00F64E6A /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047996352C69EA1A00F64E6A /* GlobalConstants.swift */; };
 		0495375A2C6731AD008C9D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049537592C6731AD008C9D14 /* AppDelegate.swift */; };
 		0495375C2C6731AD008C9D14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495375B2C6731AD008C9D14 /* SceneDelegate.swift */; };
 		0495375E2C6731AD008C9D14 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495375D2C6731AD008C9D14 /* MainScreenViewController.swift */; };
@@ -28,6 +30,8 @@
 		047996272C67513600F64E6A /* MemeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewController.swift; sourceTree = "<group>"; };
 		047996292C690CDD00F64E6A /* MemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCell.swift; sourceTree = "<group>"; };
 		0479962B2C69CC0100F64E6A /* MemeVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeVideo.swift; sourceTree = "<group>"; };
+		047996332C69E10400F64E6A /* MemeCollectionViewNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewNavBar.swift; sourceTree = "<group>"; };
+		047996352C69EA1A00F64E6A /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		049537562C6731AD008C9D14 /* HanniMemeCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HanniMemeCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049537592C6731AD008C9D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0495375B2C6731AD008C9D14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,7 @@
 			children = (
 				047996212C673D6800F64E6A /* MainScreenView.swift */,
 				047996292C690CDD00F64E6A /* MemeCell.swift */,
+				047996332C69E10400F64E6A /* MemeCollectionViewNavBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 		049537582C6731AD008C9D14 /* HanniMemeCollection */ = {
 			isa = PBXGroup;
 			children = (
+				047996352C69EA1A00F64E6A /* GlobalConstants.swift */,
 				049537592C6731AD008C9D14 /* AppDelegate.swift */,
 				0495375B2C6731AD008C9D14 /* SceneDelegate.swift */,
 				0479962D2C69DBA400F64E6A /* View */,
@@ -189,11 +195,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0495375E2C6731AD008C9D14 /* MainScreenViewController.swift in Sources */,
+				047996362C69EA1A00F64E6A /* GlobalConstants.swift in Sources */,
 				0495375A2C6731AD008C9D14 /* AppDelegate.swift in Sources */,
 				0479962C2C69CC0100F64E6A /* MemeVideo.swift in Sources */,
 				047996282C67513600F64E6A /* MemeCollectionViewController.swift in Sources */,
 				0479962A2C690CDD00F64E6A /* MemeCell.swift in Sources */,
 				0495375C2C6731AD008C9D14 /* SceneDelegate.swift in Sources */,
+				047996342C69E10400F64E6A /* MemeCollectionViewNavBar.swift in Sources */,
 				047996222C673D6800F64E6A /* MainScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

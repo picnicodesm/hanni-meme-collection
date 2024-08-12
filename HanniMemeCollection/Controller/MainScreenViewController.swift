@@ -17,7 +17,9 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         configureView()
+        addButtonAction()
     }
 
     private func configureView() {
