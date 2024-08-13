@@ -7,6 +7,8 @@
 
 import UIKit
 
+//TODO: 1. Cell Click -> WKView  2. Develop WKView
+
 class MemeCollectionViewController: UIViewController {
     let navBar = MemeCollectionViewNavBar()
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
@@ -24,7 +26,7 @@ class MemeCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        configureNavBarAndBackground()
+        ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)
         configureCollectionView()
         configureDataSource()
         addBackNavActionToBackButton()
@@ -32,35 +34,6 @@ class MemeCollectionViewController: UIViewController {
 }
 
 extension MemeCollectionViewController {
-    private func configureNavBarAndBackground() {
-        configureBackgorund()
-        configureNavBar()
-    }
-    
-    private func configureBackgorund() {
-        view.backgroundColor = .white
-        view.addSubview(bgView)
-        
-        bgView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            bgView.topAnchor.constraint(equalTo: view.topAnchor),
-            bgView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            bgView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bgView.heightAnchor.constraint(equalToConstant: GlobalConstants.backgroundImageHeight),
-        ])
-    }
-    
-    private func configureNavBar() {
-        view.addSubview(navBar)
-        
-        NSLayoutConstraint.activate([
-            navBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            navBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            navBar.heightAnchor.constraint(equalToConstant: GlobalConstants.navBarHeight)
-        ])
-    }
-    
     private func addBackNavActionToBackButton() {
         navBar.addAction(action: navBackAction, to: .back)
     }
@@ -73,6 +46,7 @@ extension MemeCollectionViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.register(MemeCell.self, forCellWithReuseIdentifier: MemeCell.identifier)
+        collectionView.delegate = self
         view.addSubview(collectionView)
         self.collectionView = collectionView
         
@@ -121,3 +95,10 @@ extension MemeCollectionViewController: UIGestureRecognizerDelegate {
     }
 }
 
+extension MemeCollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destination = MemeVideoViewController()
+        destination.memeTitle = MemeVideo.mock[indexPath.item].title // <------- should edit
+        self.navigationController?.pushViewController(destination, animated: true)
+    }
+}

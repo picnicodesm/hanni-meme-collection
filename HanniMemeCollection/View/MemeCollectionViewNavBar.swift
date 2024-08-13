@@ -12,6 +12,7 @@ class MemeCollectionViewNavBar: UIView {
     let backButton = UIButton(type: .system)
     let favoriteButton = UIButton(type: .system)
     let titleLabel = UILabel()
+    let title = "Memes"
     
     enum ButtonType {
         case back
@@ -21,7 +22,7 @@ class MemeCollectionViewNavBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "팟캐스트"
+        titleLabel.text = title
         titleLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         hierarchy()
         configureButton()
@@ -40,6 +41,18 @@ class MemeCollectionViewNavBar: UIView {
         }
     }
     
+    func setTitle(_ title: String) {
+        titleLabel.text = title
+    }
+    
+    func hideButton(of buttonType: ButtonType) {
+        isButtonVisible(of: buttonType, false)
+    }
+    
+    func showButton(of buttonType: ButtonType) {
+        isButtonVisible(of: buttonType, true)
+    }
+
     struct Constants {
         static let buttonWidth: CGFloat = 30
         static let buttonHeight: CGFloat = 30
@@ -47,6 +60,7 @@ class MemeCollectionViewNavBar: UIView {
         static let buttonStrokWidth: CGFloat = 1
     }
 }
+
 
 extension MemeCollectionViewNavBar {
     private func hierarchy() {
@@ -76,8 +90,6 @@ extension MemeCollectionViewNavBar {
     }
     
     private func configureButton() {
-        print(backButton.isUserInteractionEnabled)
-        
         var backButtonConfig = UIButton.Configuration.plain()
         var favoriteButtonConfig = UIButton.Configuration.plain()
         var buttonBackgrounConfig = UIBackgroundConfiguration.clear()
@@ -99,5 +111,16 @@ extension MemeCollectionViewNavBar {
 
         backButton.configuration = backButtonConfig
         favoriteButton.configuration = favoriteButtonConfig
+    }
+}
+
+extension MemeCollectionViewNavBar {
+    private func isButtonVisible(of buttonType: ButtonType, _ show: Bool ) {
+        switch buttonType {
+        case .back:
+            hStack.arrangedSubviews.first?.isHidden = show
+        case .favorite:
+            hStack.arrangedSubviews.last?.isHidden = show
+        }
     }
 }
