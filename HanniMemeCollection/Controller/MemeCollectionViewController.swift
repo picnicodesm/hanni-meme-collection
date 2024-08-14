@@ -7,8 +7,6 @@
 
 import UIKit
 
-//TODO: 1. Cell Click -> WKView  2. Develop WKView
-
 class MemeCollectionViewController: UIViewController {
     let navBar = MemeCollectionViewNavBar()
     let bgView = UIImageView(image: UIImage(named: "background_blue"))

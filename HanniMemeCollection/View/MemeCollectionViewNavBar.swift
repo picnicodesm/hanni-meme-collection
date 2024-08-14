@@ -53,7 +53,7 @@ class MemeCollectionViewNavBar: UIView {
         isButtonVisible(of: buttonType, true)
     }
 
-    struct Constants {
+    private struct Constants {
         static let buttonWidth: CGFloat = 30
         static let buttonHeight: CGFloat = 30
         static let buttonCornerRadius: CGFloat = 15

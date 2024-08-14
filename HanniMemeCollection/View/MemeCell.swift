@@ -11,13 +11,15 @@ class MemeCell: UICollectionViewCell {
     static let identifier = "MemeCell"
     var thumbnailImageView: UIImageView!
     var titleLabel: UILabel!
+    let key = "cxo-IeAG2T4"
+    var thumbnailString: String { "https://img.youtube.com/vi/\(key)/0.jpg" }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         configureViews()
         configureLayout()
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("error")
     }
@@ -28,11 +30,23 @@ class MemeCell: UICollectionViewCell {
 }
 
 extension MemeCell {
-    private func configureViews() {        
+    private func configureViews() {
         let thumbnailImageView = UIImageView()
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImageView.image = UIImage(systemName: "apple.logo")
-        thumbnailImageView.backgroundColor = .purple
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: self.thumbnailString) else { return }
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.thumbnailImageView.image = image
+                    }
+                }
+            }
+            
+        }
+        
+        thumbnailImageView.clipsToBounds = true
         thumbnailImageView.layer.cornerRadius = 15
         
         let titleLabel = UILabel()
@@ -45,7 +59,7 @@ extension MemeCell {
         
         self.thumbnailImageView = thumbnailImageView
         self.titleLabel = titleLabel
-
+        
     }
     
     private func configureLayout() {
