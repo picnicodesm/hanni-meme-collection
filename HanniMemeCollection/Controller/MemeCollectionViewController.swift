@@ -60,13 +60,14 @@ extension MemeCollectionViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier, for: indexPath) as? MemeCell else { return UICollectionViewCell() }
             cell.configureCell(title: item.title)
+            cell.setThumbnail(key: item.key)
             
             return cell
         })
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(MemeVideo.mock)
+        snapshot.appendItems(MemeVideo.memes)
         dataSource.apply(snapshot)
     }
 
@@ -96,7 +97,7 @@ extension MemeCollectionViewController: UIGestureRecognizerDelegate {
 extension MemeCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destination = MemeVideoViewController()
-        destination.memeTitle = MemeVideo.mock[indexPath.item].title // <------- should edit
+        destination.memeVideo = MemeVideo.memes[indexPath.item]
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }

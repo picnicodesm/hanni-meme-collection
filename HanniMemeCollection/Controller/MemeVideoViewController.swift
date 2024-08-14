@@ -12,21 +12,16 @@ class MemeVideoViewController: UIViewController {
     let navBar = MemeCollectionViewNavBar()
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
     var webView: WKWebView!
-    var memeTitle: String = "Meme"
-    var pageLoaded = false
     lazy var navBackAction = UIAction { _ in
         self.navigationController?.popViewController(animated: true)
     }
-    let hanni = "https://www.youtube.com/shorts/cxo-IeAG2T4"
-    let urlStrings = "https://www.youtube.com/watch?v=eUq40RHyqo0"
-    let key = "cxo-IeAG2T4"
-    var thumbnailString: String { "https://img.youtube.com/vi/\(key)/0.jpg" }
-    
+
+    var memeVideo: MemeVideo? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)
-        navBar.setTitle(memeTitle)
+        navBar.setTitle(memeVideo?.title ?? "Meme")
         addBackNavActionToBackButton()
         createWebView()
         loadWebView()
@@ -54,8 +49,8 @@ extension MemeVideoViewController {
     }
     
     private func loadWebView() {
-        
-        guard let url = URL(string: "https://www.youtube.com/shorts/cxo-IeAG2T4") else { return }
+        guard let meme = memeVideo else { return }
+        guard let url = URL(string: meme.urlString) else { return }
         let request = URLRequest(url: url)
         
         webView.load(request)
@@ -69,9 +64,13 @@ extension MemeVideoViewController {
 extension MemeVideoViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(WKWebView.url) {
+            guard let memeVideo = memeVideo else { return }
             guard let url = self.webView.url?.absoluteString else { return }
         
-            if !(url == "https://www.youtube.com/shorts/cxo-IeAG2T4" || url == "https://m.youtube.com/shorts/cxo-IeAG2T4") {
+            guard let range = memeVideo.urlString.range(of: "www") else { return }
+            let modifiedURL = memeVideo.urlString.replacingCharacters(in: range, with: "m")
+            
+            if !(url == memeVideo.urlString || url == modifiedURL) {
                 loadWebView()
             }
         }

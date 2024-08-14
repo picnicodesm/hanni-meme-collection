@@ -11,9 +11,6 @@ class MemeCell: UICollectionViewCell {
     static let identifier = "MemeCell"
     var thumbnailImageView: UIImageView!
     var titleLabel: UILabel!
-    let key = "cxo-IeAG2T4"
-    var thumbnailString: String { "https://img.youtube.com/vi/\(key)/0.jpg" }
-    
     var activityIndicator: UIActivityIndicatorView!
     
     override init(frame: CGRect) {
@@ -31,9 +28,10 @@ class MemeCell: UICollectionViewCell {
         self.titleLabel.text = title
     }
     
-    func setThumbnail(url urlString: String) {
+    func setThumbnail(key keyString: String) {
         DispatchQueue.global().async {
-            guard let url = URL(string: self.thumbnailString) else { return }
+            let thumbnailString = "https://img.youtube.com/vi/\(keyString)/0.jpg"
+            guard let url = URL(string: thumbnailString) else { return }
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
