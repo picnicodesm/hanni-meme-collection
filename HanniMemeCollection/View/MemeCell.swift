@@ -14,10 +14,13 @@ class MemeCell: UICollectionViewCell {
     let key = "cxo-IeAG2T4"
     var thumbnailString: String { "https://img.youtube.com/vi/\(key)/0.jpg" }
     
+    var activityIndicator: UIActivityIndicatorView!
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         configureViews()
         configureLayout()
+        configureIndicator()
     }
     
     required init?(coder: NSCoder) {
@@ -27,25 +30,45 @@ class MemeCell: UICollectionViewCell {
     func configureCell(title: String) {
         self.titleLabel.text = title
     }
-}
-
-extension MemeCell {
-    private func configureViews() {
-        let thumbnailImageView = UIImageView()
-        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+    
+    func setThumbnail(url urlString: String) {
         DispatchQueue.global().async {
             guard let url = URL(string: self.thumbnailString) else { return }
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.thumbnailImageView.image = image
+                        self.thumbnailImageView.isHidden = false
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             }
             
         }
+    }
+}
+
+extension MemeCell {
+    private func configureIndicator() {
+        let activityIndicator = UIActivityIndicatorView()
         
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        self.activityIndicator = activityIndicator
+        contentView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+        
+    }
+    
+    private func configureViews() {
+        let thumbnailImageView = UIImageView()
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.isHidden = true
         thumbnailImageView.clipsToBounds = true
         thumbnailImageView.layer.cornerRadius = 15
         
