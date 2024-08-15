@@ -11,6 +11,7 @@ import WebKit
 class MemeVideoViewController: UIViewController {
     let navBar = MemeCollectionViewNavBar()
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
+    let viewAspectRatio: CGFloat = 16/9
     var webView: WKWebView!
     lazy var navBackAction = UIAction { _ in
         self.navigationController?.popViewController(animated: true)
@@ -44,7 +45,7 @@ extension MemeVideoViewController {
             webView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
             webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: GlobalConstants.sideConstraints),
             webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -GlobalConstants.sideConstraints),
-            webView.heightAnchor.constraint(equalTo: webView.widthAnchor, multiplier: 16/9)
+            webView.heightAnchor.constraint(equalTo: webView.widthAnchor, multiplier: viewAspectRatio)
         ])
     }
     

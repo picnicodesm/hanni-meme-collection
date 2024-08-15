@@ -45,6 +45,7 @@ extension MemeCollectionViewController {
         collectionView.backgroundColor = .clear
         collectionView.register(MemeCell.self, forCellWithReuseIdentifier: MemeCell.identifier)
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
         self.collectionView = collectionView
         
