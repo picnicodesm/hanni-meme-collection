@@ -77,8 +77,6 @@ extension MemeVideo {
         MemeVideo(title: "뜬겁새로(?)", urlString: "https://www.youtube.com/watch?v=ccINBTE_OJw"),
         MemeVideo(title: "준비 갈 완료", urlString: "https://www.youtube.com/watch?v=3aevxVamt50"),
         MemeVideo(title: "급발진 라이브", urlString: "https://www.youtube.com/shorts/p_ZiA2bRJxA")
-        
-        
     ]
     
     static var favortites: [MemeVideo] = []

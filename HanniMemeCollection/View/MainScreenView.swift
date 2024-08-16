@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class MainScreenView: UIView {
-    let backgroundImageView = UIImageView()
+    var backgroundImageView: UIImageView!
     let moveButton = UIButton(type: .system)
     
     override init(frame: CGRect) {
@@ -23,8 +23,8 @@ class MainScreenView: UIView {
     }
     
     private struct Constants {
-        static let buttonBottomConstrains: CGFloat = 162
-        static let buttonWidth: CGFloat = 221
+        static let buttonBottomConstrains: CGFloat = 100
+        static let buttonWidth: CGFloat = 290
         static let buttonHeight: CGFloat = 63
     }
     
@@ -44,10 +44,12 @@ extension MainScreenView {
     }
     
     private func configureBackground() {
+        let backgroundImageView = UIImageView()
         self.addSubview(backgroundImageView)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.backgroundColor = .blue
+        backgroundImageView.image = UIImage(named: "MainScreenBackground")
+        self.backgroundImageView = backgroundImageView
     }
     
     private func configureMoveButton() {
