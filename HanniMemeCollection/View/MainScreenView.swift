@@ -57,7 +57,7 @@ extension MainScreenView {
         
         moveButton.translatesAutoresizingMaskIntoConstraints = false
         var buttonConfiguration = UIButton.Configuration.plain()
-        buttonConfiguration.background.backgroundColor = UIColor(red: 201/255, green: 100/255, blue: 226/255, alpha: 1)
+        buttonConfiguration.background.backgroundColor = GlobalConstants.buttonColor
         buttonConfiguration.baseForegroundColor = .white
         buttonConfiguration.title = "보러가기"
         buttonConfiguration.cornerStyle = .capsule
