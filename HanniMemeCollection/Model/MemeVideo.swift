@@ -11,7 +11,8 @@ import Foundation
 struct MemeVideo: Hashable {
     let id = UUID()
     var title: String
-    var urlString: String = ""
+    var urlString: String
+    var isFavorite: Bool = false
     var key: String {
         if let shortsRange = urlString.range(of: "shorts/") {
             guard let videoID = urlString[shortsRange.upperBound...].split(separator: "/").first else {
@@ -29,13 +30,39 @@ struct MemeVideo: Hashable {
         return ""
     }
     
-    mutating func addToFavorite(_ meme: MemeVideo) {
-        MemeVideo.favortites.append(meme)
+    mutating func toggleFavorite() -> Bool {
+        if isFavorite {
+            makeNotFavorite()
+            return false
+        } else {
+            makeFavorite()
+            return true
+        }
+    }
+}
+
+extension MemeVideo {
+    private mutating func makeFavorite() {
+        guard let index = MemeVideo.memes.firstIndex(of: self) else { return }
+        MemeVideo.memes[index].isFavorite = true
+        isFavorite = true
+        addToFavorites()
     }
     
-    mutating func removeFromFavorite(_ meme: MemeVideo) {
+    private mutating func makeNotFavorite() {
+        guard let index = MemeVideo.memes.firstIndex(of: self) else { return }
+        MemeVideo.memes[index].isFavorite = false
+        isFavorite = false
+        removeFromFavorites()
+    }
+    
+    private mutating func addToFavorites() {
+        MemeVideo.favortites.append(self)
+    }
+    
+    private mutating func removeFromFavorites() {
         MemeVideo.favortites = MemeVideo.favortites.filter {
-            $0.id != meme.id
+            $0.id != self.id
         }
     }
 }

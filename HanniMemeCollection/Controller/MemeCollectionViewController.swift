@@ -12,8 +12,20 @@ class MemeCollectionViewController: UIViewController {
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    var collectionViewItem = MemeVideo.memes
+    var isFavorites = false {
+        willSet {
+            updateItem(to: newValue)
+        }
+    }
+    var isFirstTime: Bool = true
     lazy var navBackAction = UIAction { _ in
         self.navigationController?.popViewController(animated: true)
+    }
+    lazy var showFavortiesAction = UIAction { _ in
+        self.isFavorites.toggle()
+        self.navBar.toggleFavoriteButton(to: self.isFavorites)
+        self.updateSnapshot()
     }
     
     typealias Item = MemeVideo
@@ -28,12 +40,42 @@ class MemeCollectionViewController: UIViewController {
         configureCollectionView()
         configureDataSource()
         addBackNavActionToBackButton()
+        addShowFavoriteActionToFavoriteButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isFirstTime {
+            isFirstTime = false
+        } else {
+            updateItem(to: isFavorites)
+            updateSnapshot()
+        }
     }
 }
 
 extension MemeCollectionViewController {
     private func addBackNavActionToBackButton() {
         navBar.addAction(action: navBackAction, to: .back)
+    }
+    
+    private func addShowFavoriteActionToFavoriteButton() {
+        navBar.addAction(action: showFavortiesAction, to: .favorite)
+    }
+    
+    private func updateItem(to isFavorites: Bool) {
+        if isFavorites {
+            collectionViewItem = MemeVideo.favortites
+        } else {
+            collectionViewItem = MemeVideo.memes
+        }
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(self.collectionViewItem)
+        self.dataSource.apply(snapshot)
     }
 }
 
@@ -68,7 +110,7 @@ extension MemeCollectionViewController {
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(MemeVideo.memes)
+        snapshot.appendItems(collectionViewItem)
         dataSource.apply(snapshot)
     }
 
@@ -98,7 +140,8 @@ extension MemeCollectionViewController: UIGestureRecognizerDelegate {
 extension MemeCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destination = MemeVideoViewController()
-        destination.memeVideo = MemeVideo.memes[indexPath.item]
+        let memeVideo = collectionViewItem[indexPath.item]
+        destination.memeVideo = memeVideo
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }

@@ -16,6 +16,12 @@ class MemeVideoViewController: UIViewController {
     lazy var navBackAction = UIAction { _ in
         self.navigationController?.popViewController(animated: true)
     }
+    lazy var toggleFavoriteAction = UIAction { _ in
+        guard var meme = self.memeVideo else { return }
+        let isBecameFavortie = meme.toggleFavorite()
+        self.navBar.toggleFavoriteButton(to: isBecameFavortie)
+        self.memeVideo = meme
+    }
 
     var memeVideo: MemeVideo? = nil
     
@@ -23,13 +29,20 @@ class MemeVideoViewController: UIViewController {
         super.viewDidLoad()
         ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)
         navBar.setTitle(memeVideo?.title ?? "Meme")
+        setFavoriteButton()
         addBackNavActionToBackButton()
+        addToggleFavoriteActionToFavoriteButton()
         createWebView()
         loadWebView()
     }
 }
 
 extension MemeVideoViewController {
+    private func setFavoriteButton() {
+        guard let memeVideo = memeVideo else { return }
+        navBar.toggleFavoriteButton(to: memeVideo.isFavorite)
+    }
+    
     private func createWebView() {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.allowsInlineMediaPlayback = true
@@ -59,6 +72,10 @@ extension MemeVideoViewController {
 
     private func addBackNavActionToBackButton() {
         navBar.addAction(action: navBackAction, to: .back)
+    }
+    
+    private func addToggleFavoriteActionToFavoriteButton() {
+        navBar.addAction(action: toggleFavoriteAction, to: .favorite)
     }
 }
 

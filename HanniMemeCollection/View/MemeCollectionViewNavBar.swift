@@ -52,6 +52,14 @@ class MemeCollectionViewNavBar: UIView {
     func showButton(of buttonType: ButtonType) {
         isButtonVisible(of: buttonType, true)
     }
+    
+    func toggleFavoriteButton(to isOn: Bool) {
+        if isOn {
+            turnOnfavortieButton()
+        } else {
+            turnOffFavoriteButton()
+        }
+    }
 
     private struct Constants {
         static let buttonWidth: CGFloat = 30
@@ -122,5 +130,19 @@ extension MemeCollectionViewNavBar {
         case .favorite:
             hStack.arrangedSubviews.last?.isHidden = show
         }
+    }
+    
+    private func turnOnfavortieButton() {
+        guard var buttonConfig = favoriteButton.configuration else { return }
+        buttonConfig.image = UIImage(systemName: "heart.fill")
+        buttonConfig.baseForegroundColor = .green
+        favoriteButton.configuration = buttonConfig
+    }
+    
+    private func turnOffFavoriteButton() {
+        guard var buttonConfig = favoriteButton.configuration else { return }
+        buttonConfig.image = UIImage(systemName: "heart")
+        buttonConfig.baseForegroundColor = .black
+        favoriteButton.configuration = buttonConfig
     }
 }
