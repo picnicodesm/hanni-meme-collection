@@ -39,6 +39,19 @@ struct MemeVideo: Hashable {
             return true
         }
     }
+    
+    func getThumbnailData() async -> Data? {
+        let thumbnailString = "https://img.youtube.com/vi/\(key)/0.jpg"
+        guard let url = URL(string: thumbnailString) else { return nil }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return data
+        } catch {
+            print("Error fetching thumbnail data: \(error)")
+            return nil
+        }
+    }
 }
 
 extension MemeVideo {

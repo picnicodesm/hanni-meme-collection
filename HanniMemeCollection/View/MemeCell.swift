@@ -28,20 +28,12 @@ class MemeCell: UICollectionViewCell {
         self.titleLabel.text = title
     }
     
-    func setThumbnail(key keyString: String) {
-        DispatchQueue.global().async {
-            let thumbnailString = "https://img.youtube.com/vi/\(keyString)/0.jpg"
-            guard let url = URL(string: thumbnailString) else { return }
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.thumbnailImageView.image = image
-                        self.thumbnailImageView.isHidden = false
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
-            }
-        }
+    func setThumbnail(imageData data: Data?) {
+        guard let data = data else { return }
+        guard let image = UIImage(data: data) else { return }
+        thumbnailImageView.image = image
+        thumbnailImageView.isHidden = false
+        activityIndicator.stopAnimating()
     }
 }
 

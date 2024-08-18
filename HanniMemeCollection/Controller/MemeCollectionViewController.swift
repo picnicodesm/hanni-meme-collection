@@ -62,8 +62,8 @@ extension MemeCollectionViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.deleteAllItems()
         snapshot.appendSections([.main])
-        snapshot.appendItems(self.collectionViewItem)
-        self.dataSource.apply(snapshot)
+        snapshot.appendItems(collectionViewItem)
+        dataSource.apply(snapshot)
     }
 }
 
@@ -91,8 +91,10 @@ extension MemeCollectionViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCell.identifier, for: indexPath) as? MemeCell else { return UICollectionViewCell() }
             cell.configureCell(title: item.title)
-            cell.setThumbnail(key: item.key)
-            
+            Task {
+                let imageData = await item.getThumbnailData()
+                cell.setThumbnail(imageData: imageData)
+            }
             return cell
         })
     }
