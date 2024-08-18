@@ -48,7 +48,7 @@ extension MemeVideoViewController {
         webConfiguration.allowsInlineMediaPlayback = true
         
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        
+         
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
         view.addSubview(webView)

@@ -44,15 +44,15 @@ struct MemeVideo: Hashable {
 extension MemeVideo {
     private mutating func makeFavorite() {
         guard let index = MemeVideo.memes.firstIndex(of: self) else { return }
-        MemeVideo.memes[index].isFavorite = true
         isFavorite = true
+        updateData(self, at: index)
         addToFavorites()
     }
     
     private mutating func makeNotFavorite() {
         guard let index = MemeVideo.memes.firstIndex(of: self) else { return }
-        MemeVideo.memes[index].isFavorite = false
         isFavorite = false
+        updateData(self, at: index)
         removeFromFavorites()
     }
     
@@ -64,6 +64,11 @@ extension MemeVideo {
         MemeVideo.favortites = MemeVideo.favortites.filter {
             $0.id != self.id
         }
+    }
+    
+    private func updateData(_ newData: MemeVideo, at index: Array.Index) {
+        MemeVideo.memes.remove(at: index)
+        MemeVideo.memes.insert(newData, at: index)
     }
 }
 

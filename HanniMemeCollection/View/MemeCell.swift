@@ -9,9 +9,9 @@ import UIKit
 
 class MemeCell: UICollectionViewCell {
     static let identifier = "MemeCell"
-    var thumbnailImageView: UIImageView!
-    var titleLabel: UILabel!
-    var activityIndicator: UIActivityIndicatorView!
+    private var thumbnailImageView: UIImageView!
+    private var titleLabel: UILabel!
+    private var activityIndicator: UIActivityIndicatorView!
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -41,7 +41,6 @@ class MemeCell: UICollectionViewCell {
                     }
                 }
             }
-            
         }
     }
 }
@@ -60,7 +59,6 @@ extension MemeCell {
             activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
-        
     }
     
     private func configureViews() {
@@ -68,11 +66,11 @@ extension MemeCell {
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.isHidden = true
         thumbnailImageView.clipsToBounds = true
-        thumbnailImageView.layer.cornerRadius = 15
+        thumbnailImageView.layer.cornerRadius = 10
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        titleLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         titleLabel.textAlignment = .left
         
         contentView.addSubview(thumbnailImageView)
@@ -80,7 +78,6 @@ extension MemeCell {
         
         self.thumbnailImageView = thumbnailImageView
         self.titleLabel = titleLabel
-        
     }
     
     private func configureLayout() {

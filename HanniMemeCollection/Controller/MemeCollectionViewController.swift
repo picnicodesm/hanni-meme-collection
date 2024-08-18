@@ -12,13 +12,14 @@ class MemeCollectionViewController: UIViewController {
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    var collectionViewItem = MemeVideo.memes
-    var isFavorites = false {
-        willSet {
-            updateItem(to: newValue)
+    var collectionViewItem: [MemeVideo] {
+        if isFavorites {
+            return MemeVideo.favortites
+        } else {
+            return MemeVideo.memes
         }
     }
-    var isFirstTime: Bool = true
+    var isFavorites = false
     lazy var navBackAction = UIAction { _ in
         self.navigationController?.popViewController(animated: true)
     }
@@ -44,12 +45,7 @@ class MemeCollectionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if isFirstTime {
-            isFirstTime = false
-        } else {
-            updateItem(to: isFavorites)
-            updateSnapshot()
-        }
+        updateSnapshot()
     }
 }
 
@@ -60,14 +56,6 @@ extension MemeCollectionViewController {
     
     private func addShowFavoriteActionToFavoriteButton() {
         navBar.addAction(action: showFavortiesAction, to: .favorite)
-    }
-    
-    private func updateItem(to isFavorites: Bool) {
-        if isFavorites {
-            collectionViewItem = MemeVideo.favortites
-        } else {
-            collectionViewItem = MemeVideo.memes
-        }
     }
     
     private func updateSnapshot() {
@@ -107,11 +95,6 @@ extension MemeCollectionViewController {
             
             return cell
         })
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(collectionViewItem)
-        dataSource.apply(snapshot)
     }
 
     private func configureLayout() -> UICollectionViewLayout {

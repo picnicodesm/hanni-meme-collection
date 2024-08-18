@@ -8,11 +8,11 @@
 import UIKit
 
 class MemeCollectionViewNavBar: UIView {
-    let hStack = UIStackView()
-    let backButton = UIButton(type: .system)
-    let favoriteButton = UIButton(type: .system)
-    let titleLabel = UILabel()
-    let title = "Memes"
+    private let hStack = UIStackView()
+    private let backButton = UIButton(type: .system)
+    private let favoriteButton = UIButton(type: .system)
+    private let titleLabel = UILabel()
+    private let title = "Memes"
     
     enum ButtonType {
         case back
@@ -54,11 +54,10 @@ class MemeCollectionViewNavBar: UIView {
     }
     
     func toggleFavoriteButton(to isOn: Bool) {
-        if isOn {
-            turnOnfavortieButton()
-        } else {
-            turnOffFavoriteButton()
-        }
+        guard var buttonConfig = favoriteButton.configuration else { return }
+        buttonConfig.image = isOn ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        buttonConfig.baseForegroundColor = isOn ? .green : .black
+        favoriteButton.configuration = buttonConfig
     }
 
     private struct Constants {
@@ -101,20 +100,22 @@ extension MemeCollectionViewNavBar {
         var backButtonConfig = UIButton.Configuration.plain()
         var favoriteButtonConfig = UIButton.Configuration.plain()
         var buttonBackgrounConfig = UIBackgroundConfiguration.clear()
+        let symbolConfiguration = UIImage.SymbolConfiguration(scale: .small)
+        let baseForegroundColor = UIColor.black
    
         buttonBackgrounConfig.backgroundColor = .white
-        buttonBackgrounConfig.strokeColor = .black
+        buttonBackgrounConfig.strokeColor = baseForegroundColor
         buttonBackgrounConfig.strokeWidth = Constants.buttonStrokWidth
         buttonBackgrounConfig.cornerRadius = Constants.buttonCornerRadius
         
         backButtonConfig.image = UIImage(systemName: "chevron.left")
-        backButtonConfig.baseForegroundColor = .black
-        backButtonConfig.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .small)
+        backButtonConfig.baseForegroundColor = baseForegroundColor
+        backButtonConfig.preferredSymbolConfigurationForImage = symbolConfiguration
         backButtonConfig.background = buttonBackgrounConfig
         
         favoriteButtonConfig.image = UIImage(systemName: "heart")
-        favoriteButtonConfig.baseForegroundColor = .black
-        favoriteButtonConfig.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .small)
+        favoriteButtonConfig.baseForegroundColor = baseForegroundColor
+        favoriteButtonConfig.preferredSymbolConfigurationForImage = symbolConfiguration
         favoriteButtonConfig.background = buttonBackgrounConfig
 
         backButton.configuration = backButtonConfig
@@ -130,19 +131,5 @@ extension MemeCollectionViewNavBar {
         case .favorite:
             hStack.arrangedSubviews.last?.isHidden = show
         }
-    }
-    
-    private func turnOnfavortieButton() {
-        guard var buttonConfig = favoriteButton.configuration else { return }
-        buttonConfig.image = UIImage(systemName: "heart.fill")
-        buttonConfig.baseForegroundColor = .green
-        favoriteButton.configuration = buttonConfig
-    }
-    
-    private func turnOffFavoriteButton() {
-        guard var buttonConfig = favoriteButton.configuration else { return }
-        buttonConfig.image = UIImage(systemName: "heart")
-        buttonConfig.baseForegroundColor = .black
-        favoriteButton.configuration = buttonConfig
     }
 }

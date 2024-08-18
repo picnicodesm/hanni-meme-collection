@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class MainScreenView: UIView {
-    var backgroundImageView: UIImageView!
-    let moveButton = UIButton(type: .system)
+    private var backgroundImageView: UIImageView!
+    private let moveButton = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super .init(frame: frame)
