@@ -15,17 +15,13 @@ struct MemeVideo: Hashable {
     var isFavorite: Bool = false
     var key: String {
         if let shortsRange = urlString.range(of: "shorts/") {
-            guard let videoID = urlString[shortsRange.upperBound...].split(separator: "/").first else {
-                return ""
-            }
-            return String(videoID)
+            let key = urlString[shortsRange.upperBound...]
+            return String(key)
         }
         
         if let videoRange = urlString.range(of: "watch?v=") {
-            guard let videoID = urlString[videoRange.upperBound...].split(separator: "=").first else {
-                return ""
-            }
-            return String(videoID)
+            let key = urlString[videoRange.upperBound...]
+            return String(key)
         }
         return ""
     }
@@ -41,6 +37,7 @@ struct MemeVideo: Hashable {
     }
     
     func getThumbnailData() async -> Data? {
+        if key.isEmpty { return nil }
         let thumbnailString = "https://img.youtube.com/vi/\(key)/0.jpg"
         guard let url = URL(string: thumbnailString) else { return nil }
 

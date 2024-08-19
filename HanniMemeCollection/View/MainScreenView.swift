@@ -49,6 +49,7 @@ extension MainScreenView {
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.image = UIImage(named: "MainScreenBackground")
+        backgroundImageView.contentMode = .scaleAspectFit
         self.backgroundImageView = backgroundImageView
     }
     

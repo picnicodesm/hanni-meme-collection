@@ -86,9 +86,9 @@ extension MemeVideoViewController {
             guard let url = self.webView.url?.absoluteString else { return }
         
             guard let range = memeVideo.urlString.range(of: "www") else { return }
-            let modifiedURL = memeVideo.urlString.replacingCharacters(in: range, with: "m")
+            let mobileURL = memeVideo.urlString.replacingCharacters(in: range, with: "m")
             
-            if !(url == memeVideo.urlString || url == modifiedURL) {
+            if !(url == memeVideo.urlString || url == mobileURL) {
                 loadWebView()
             }
         }
