@@ -24,7 +24,7 @@ class MemeVideoViewController: UIViewController {
     }
 
     var memeVideo: MemeVideo? = nil
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)
@@ -81,7 +81,6 @@ extension MemeVideoViewController {
 
 extension MemeVideoViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == #keyPath(WKWebView.url) {
             guard let memeVideo = memeVideo else { return }
             guard let url = self.webView.url?.absoluteString else { return }
         
@@ -91,7 +90,6 @@ extension MemeVideoViewController {
             if !(url == memeVideo.urlString || url == mobileURL) {
                 loadWebView()
             }
-        }
     }
 }
 

@@ -94,5 +94,14 @@ extension MemeVideo {
         MemeVideo(title: "급발진 라이브", urlString: "https://www.youtube.com/shorts/p_ZiA2bRJxA")
     ]
     
-    static var favortites: [MemeVideo] = []
+    static var favortites: [MemeVideo] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .favoritesDidUpdate, object: nil)
+        }
+    }
+}
+
+
+extension Notification.Name {
+    static let favoritesDidUpdate = Notification.Name("favoritesDidUpdate")
 }

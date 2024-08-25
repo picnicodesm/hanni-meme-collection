@@ -40,12 +40,18 @@ class MemeCollectionViewController: UIViewController {
         ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)
         configureCollectionView()
         configureDataSource()
+        updateSnapshot()
         addBackNavActionToBackButton()
         addShowFavoriteActionToFavoriteButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFavoritesUpdate), name: .favoritesDidUpdate, object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    @objc private func handleFavoritesUpdate() {
         updateSnapshot()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
