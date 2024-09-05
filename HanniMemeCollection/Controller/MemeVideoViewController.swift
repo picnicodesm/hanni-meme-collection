@@ -21,10 +21,21 @@ class MemeVideoViewController: UIViewController {
         let isBecameFavortie = meme.toggleFavorite()
         self.navBar.toggleFavoriteButton(to: isBecameFavortie)
         self.memeVideo = meme
+        self.onChange(meme)
     }
 
     var memeVideo: MemeVideo? = nil
-
+    var onChange: (MemeVideo) -> Void
+    
+    init(onChange: @escaping (MemeVideo) -> Void) {
+        self.onChange = onChange
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewSticker.addBackgroundAndNavBar(backgroundView: bgView, navBar: navBar, to: self)

@@ -22,6 +22,7 @@
 		0495375E2C6731AD008C9D14 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495375D2C6731AD008C9D14 /* MainScreenViewController.swift */; };
 		049537632C6731AE008C9D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049537622C6731AE008C9D14 /* Assets.xcassets */; };
 		049537662C6731AE008C9D14 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 049537652C6731AE008C9D14 /* Base */; };
+		04BD01822C7D94E400DCCAC7 /* MemeVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BD01812C7D94E400DCCAC7 /* MemeVideos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		049537622C6731AE008C9D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		049537652C6731AE008C9D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		049537672C6731AE008C9D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04BD01812C7D94E400DCCAC7 /* MemeVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeVideos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0479962B2C69CC0100F64E6A /* MemeVideo.swift */,
+				04BD01812C7D94E400DCCAC7 /* MemeVideos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				0495375A2C6731AD008C9D14 /* AppDelegate.swift in Sources */,
 				0479962C2C69CC0100F64E6A /* MemeVideo.swift in Sources */,
 				047996282C67513600F64E6A /* MemeCollectionViewController.swift in Sources */,
+				04BD01822C7D94E400DCCAC7 /* MemeVideos.swift in Sources */,
 				0479962A2C690CDD00F64E6A /* MemeCell.swift in Sources */,
 				047996382C6AF55200F64E6A /* MemeVideoViewController.swift in Sources */,
 				0479963C2C6AFE0000F64E6A /* ViewSticker.swift in Sources */,

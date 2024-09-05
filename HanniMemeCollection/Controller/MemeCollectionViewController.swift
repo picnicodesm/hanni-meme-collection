@@ -12,12 +12,10 @@ class MemeCollectionViewController: UIViewController {
     let bgView = UIImageView(image: UIImage(named: "background_blue"))
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    var model = MemeVideos()
     var collectionViewItem: [MemeVideo] {
-        if isFavorites {
-            return MemeVideo.favortites
-        } else {
-            return MemeVideo.memes
-        }
+        if isFavorites { model.favorites }
+        else { model.memes }
     }
     var isFavorites = false
     lazy var navBackAction = UIAction { _ in
@@ -43,15 +41,6 @@ class MemeCollectionViewController: UIViewController {
         updateSnapshot()
         addBackNavActionToBackButton()
         addShowFavoriteActionToFavoriteButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleFavoritesUpdate), name: .favoritesDidUpdate, object: nil)
-    }
-    
-    @objc private func handleFavoritesUpdate() {
-        updateSnapshot()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -130,7 +119,11 @@ extension MemeCollectionViewController: UIGestureRecognizerDelegate {
 
 extension MemeCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = MemeVideoViewController()
+        let destination = MemeVideoViewController() { meme in
+            self.model.updateFavorites(meme)
+            self.updateSnapshot()
+        }
+        
         let memeVideo = collectionViewItem[indexPath.item]
         destination.memeVideo = memeVideo
         self.navigationController?.pushViewController(destination, animated: true)

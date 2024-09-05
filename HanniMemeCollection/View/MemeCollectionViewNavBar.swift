@@ -44,15 +44,7 @@ class MemeCollectionViewNavBar: UIView {
     func setTitle(_ title: String) {
         titleLabel.text = title
     }
-    
-    func hideButton(of buttonType: ButtonType) {
-        isButtonVisible(of: buttonType, false)
-    }
-    
-    func showButton(of buttonType: ButtonType) {
-        isButtonVisible(of: buttonType, true)
-    }
-    
+
     func toggleFavoriteButton(to isOn: Bool) {
         guard var buttonConfig = favoriteButton.configuration else { return }
         buttonConfig.image = isOn ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
@@ -120,16 +112,5 @@ extension MemeCollectionViewNavBar {
 
         backButton.configuration = backButtonConfig
         favoriteButton.configuration = favoriteButtonConfig
-    }
-}
-
-extension MemeCollectionViewNavBar {
-    private func isButtonVisible(of buttonType: ButtonType, _ show: Bool ) {
-        switch buttonType {
-        case .back:
-            hStack.arrangedSubviews.first?.isHidden = show
-        case .favorite:
-            hStack.arrangedSubviews.last?.isHidden = show
-        }
     }
 }
